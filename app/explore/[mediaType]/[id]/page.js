@@ -6,6 +6,9 @@ import { getApiConfig } from '@/redux/slice/homeSlice';
 
 import useConfig from '@/hooks/useConfig';
 
+import Login from '@/components/auth/Login';
+import Footer from '@/components/Footer';
+
 // async function getData() {
 //   const res = await fetch(`${process.env.URL}/api`);
 
@@ -38,5 +41,11 @@ export default function Home() {
     }
   }, [configuration, dispatch]);
 
-  return <main>{/* <Header /> */}</main>;
+  return (
+    <main>
+      Hello
+      <Login />
+      <Footer />
+    </main>
+  );
 }
