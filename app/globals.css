@@ -18,6 +18,10 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.hero-bg {
+  background: linear-gradient(180deg, rgba(4, 21, 45, 0) 0%, #000000 79.17%);
+}
+
 .skeleton {
   position: relative;
   overflow: hidden;

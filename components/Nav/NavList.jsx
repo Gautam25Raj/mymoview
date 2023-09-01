@@ -29,7 +29,7 @@ function NavList() {
       {navListItems.map(({ label, icon, href }, key) => (
         <Link key={label} href={href}>
           <p className="text-white">
-            <MenuItem className="flex items-center gap-2 lg:rounded-full hover:text-white hover:bg-gray-800 hover:scale-105 active:scale-95">
+            <MenuItem className="flex items-center gap-2 lg:rounded-full lg:hover:text-white lg:hover:bg-gray-800 lg:hover:scale-105 lg:active:scale-95">
               {React.createElement(icon, { className: 'h-[18px] w-[18px]' })}{' '}
               {label}
             </MenuItem>

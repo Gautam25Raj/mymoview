@@ -1,42 +1,40 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { UseSelector, useDispatch } from 'react-redux';
 import { getApiConfig } from '@/redux/slice/homeSlice';
 
-import useConfig from '@/hooks/useConfig';
+import Hero from '@/components/layout/home/Hero';
 
-// async function getData() {
-//   const res = await fetch(`${process.env.URL}/api`);
+async function getConfig() {
+  const res = await fetch(`${process.env.URL}/api/config`);
 
-//   if (!res.ok) {
-//     throw new Error('Failed to fetch data');
-//   }
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
 
-//   return res.json();
-// }
-
-// async function getTopMovies() {
-//   const res = await fetch(`${process.env.URL}/api/movie/getTopMovies`);
-
-//   if (!res.ok) {
-//     throw new Error('Failed to fetch data');
-//   }
-
-//   return res.json();
-// }
+  return res.json();
+}
 
 export default function Home() {
   // const data = await getTopMovies();
   const dispatch = useDispatch();
-
-  const { configuration, loading, error } = useConfig();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (configuration) {
-      dispatch(getApiConfig(configuration));
-    }
-  }, [configuration, dispatch]);
+    const fetchData = async () => {
+      const data = await getConfig();
 
-  return <main>{/* <Header /> */}</main>;
+      dispatch(getApiConfig(data));
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <>
+      <Hero />
+    </>
+  );
 }

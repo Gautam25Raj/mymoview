@@ -51,7 +51,7 @@ export default function ComplexNavbar() {
         </IconButton>
         <ProfileMenu />
       </div>
-      <MobileNav open={isNavOpen} className="overflow-scroll">
+      <MobileNav open={isNavOpen} className="no-scrollbar::-webkit-scrollbar">
         <NavList />
       </MobileNav>
     </Navbar>

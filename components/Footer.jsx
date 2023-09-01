@@ -20,7 +20,7 @@ const Footer = () => {
           </Link>
           <ul className="flex flex-wrap items-center mb-6 text-sm font-medium sm:mb-0 text-gray-400">
             <li>
-              <Link href="#" className="mr-4 hover:underline md:mr-6 ">
+              <Link href="/" className="mr-4 hover:underline md:mr-6 ">
                 Home
               </Link>
             </li>

@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <ReduxProvider>
           <ComplexNavbar />
-          <main className="mx-auto max-w-2xl">{children}</main>
+          <main className="mx-auto max-w-screen-2xl">{children}</main>
           <Footer />
         </ReduxProvider>
       </body>

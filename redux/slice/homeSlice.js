@@ -1,9 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  url: {
-    name: 'api',
-  },
+  url: {},
   genres: {},
 };
 
