@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import CarouselItem from './carousel/CarouselItem';
 
-const Carousel = ({ data, loading, endpoint, title }) => {
+const Carousel = ({ data, loading }) => {
   const carouselContainer = useRef();
 
   const navigation = (direction) => {
@@ -33,8 +33,6 @@ const Carousel = ({ data, loading, endpoint, title }) => {
 
   return (
     <div className="mb-12 relative">
-      {title && <div className="text-2xl text-white mb-5">{title}</div>}
-
       <div className="left-4 text-white absolute top-2/4 -translate-y-1/2 cursor-pointer opacity-60 z-20 hidden md:block md:hover:opacity-100 bg-black rounded-full p-2">
         <ArrowLeftIcon className="w-8 h-8" onClick={() => navigation('left')} />
       </div>
