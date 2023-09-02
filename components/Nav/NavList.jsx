@@ -4,6 +4,7 @@ import React from 'react';
 import { MenuItem } from '@material-tailwind/react';
 import { UserCircleIcon, FilmIcon, TvIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import SearchBtn from './SearchBtn';
 
 const navListItems = [
   {

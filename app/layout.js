@@ -1,8 +1,10 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import ReduxProvider from '@/redux/provider';
+
 import Footer from '@/components/Footer';
 import ComplexNavbar from '@/components/ComplexNavBar';
+import SearchBtn from '@/components/Nav/SearchBtn';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,6 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <ReduxProvider>
+          <SearchBtn />
           <ComplexNavbar />
           <main className="mx-auto max-w-screen-2xl">{children}</main>
           <Footer />

@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Navbar, MobileNav, IconButton } from '@material-tailwind/react';
+import { Navbar, IconButton, Collapse } from '@material-tailwind/react';
 import { Bars2Icon } from '@heroicons/react/24/outline';
 
 import NavList from './Nav/NavList';
@@ -40,6 +40,7 @@ export default function ComplexNavbar() {
         <div className="absolute top-2/4 left-2/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block">
           <NavList />
         </div>
+
         <IconButton
           size="sm"
           color="white"
@@ -51,9 +52,10 @@ export default function ComplexNavbar() {
         </IconButton>
         <ProfileMenu />
       </div>
-      <MobileNav open={isNavOpen} className="no-scrollbar::-webkit-scrollbar">
+
+      <Collapse open={isNavOpen} className="no-scrollbar::-webkit-scrollbar">
         <NavList />
-      </MobileNav>
+      </Collapse>
     </Navbar>
   );
 }

@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="rounded-lg shadow bg-gray-900 m-4">
-      <div className="w-full max-w-screen-2xl mx-auto p-4 md:py-8">
+    <footer className="rounded-lg shadow bg-gray-900 max-w-screen-2xl mx-auto m-4">
+      <div className="w-full p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
           <Link href="/" className="flex items-center mb-4 sm:mb-0">
             <Image
