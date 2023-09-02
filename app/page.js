@@ -2,12 +2,32 @@
 
 import { useEffect, useState } from 'react';
 import { UseSelector, useDispatch } from 'react-redux';
-import { getApiConfig } from '@/redux/slice/homeSlice';
+import { getApiConfig, getGenres } from '@/redux/slice/homeSlice';
 
-import Hero from '@/components/layout/home/Hero';
+import HomeSection from '@/components/layout/home/Home';
 
 async function getConfig() {
   const res = await fetch(`${process.env.URL}/api/config`);
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
+
+async function getMovieGenres() {
+  const res = await fetch(`${process.env.URL}/api/movie/genres`);
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
+
+async function getTvshowsGenres() {
+  const res = await fetch(`${process.env.URL}/api/tvshow/genres`);
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -24,8 +44,19 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getConfig();
-
       dispatch(getApiConfig(data));
+
+      const allGenres = [];
+
+      const movieGenres = await getMovieGenres();
+      const tvshowsGenres = await getTvshowsGenres();
+      [movieGenres, tvshowsGenres].map((genres) => {
+        genres.genres.map((genre) => {
+          allGenres[genre.id] = genre;
+        });
+      });
+      dispatch(getGenres(allGenres));
+
       setLoading(false);
     };
 
@@ -34,7 +65,7 @@ export default function Home() {
 
   return (
     <>
-      <Hero />
+      <HomeSection />
     </>
   );
 }

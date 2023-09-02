@@ -10,6 +10,10 @@ module.exports = withMT({
   ],
   theme: {
     extend: {
+      aspectRatio: {
+        '1/1.5': '1 / 1.5',
+      },
+
       keyframes: {
         shimmer: {
           '100%': {
@@ -19,7 +23,7 @@ module.exports = withMT({
       },
 
       animation: {
-        shimmer: 'shimmer 1s ease-in-out 1',
+        shimmer: 'shimmer .5s ease-in-out 1',
       },
     },
   },
