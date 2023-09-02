@@ -94,7 +94,7 @@ function ProfileMenu() {
     </Menu>
   ) : (
     <Link
-      href="/signup"
+      href="/register"
       className="text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 bg-gray-800 hover:bg-gray-700 hover:scale-105 focus:bg-gray-800 active:scale-95 ml-auto"
     >
       Sign Up Now
