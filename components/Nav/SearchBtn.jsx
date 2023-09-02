@@ -1,15 +1,8 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
-import {
-  Drawer,
-  Button,
-  Typography,
-  IconButton,
-} from '@material-tailwind/react';
 import DrawerWindow from './DrawerWindow';
 
 const SearchBtn = () => {

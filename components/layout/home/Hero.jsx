@@ -17,9 +17,11 @@ const Hero = () => {
     const getBackground = async () => {
       const data = await getNowPlayingMovies();
       const bg =
+        url &&
+        url.images &&
         url.images.secure_base_url +
-        'original' +
-        data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
+          'original' +
+          data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
 
       setBackground(bg);
     };
@@ -27,7 +29,7 @@ const Hero = () => {
     if (url != undefined) {
       getBackground();
     }
-  }, []);
+  }, [url, getNowPlayingMovies]);
 
   const searchQueryHandler = (event) => {
     if (event.key === 'Enter' && query.length > 0) {

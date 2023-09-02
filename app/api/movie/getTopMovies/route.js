@@ -5,7 +5,7 @@ export async function GET(request) {
   const apiKey = process.env.API_KEY;
 
   const res = await fetch(
-    `https://cloud.syncloop.com/tenant/1693563382145/packages.MeMoView.tmdb.movies.getTopMovies.main?apiKey=${apiKey}`,
+    `https://cloud.syncloop.com/tenant/1693597273751/packages.MyMoView.tmdb.movies.getTopRatedMovies.main?apiKey=${apiKey}`,
     {
       headers: {
         Authorization: `Bearer ${bearerToken}`,

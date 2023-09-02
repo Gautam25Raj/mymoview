@@ -10,9 +10,10 @@ const CarouselItem = ({ item }) => {
   const router = useRouter();
   const { url } = useSelector((state) => state.home);
 
-  const posterUrl = item.poster_path
-    ? url.images.secure_base_url + 'w342' + item.poster_path
-    : '/no-image.jpg';
+  const posterUrl =
+    item.poster_path && url.images
+      ? url.images.secure_base_url + 'w342' + item.poster_path
+      : '/no-image.jpg';
 
   return (
     <div

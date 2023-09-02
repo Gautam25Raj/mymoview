@@ -50,6 +50,7 @@ export default function Home() {
 
       const movieGenres = await getMovieGenres();
       const tvshowsGenres = await getTvshowsGenres();
+      console.log(movieGenres);
       [movieGenres, tvshowsGenres].map((genres) => {
         genres.genres.map((genre) => {
           allGenres[genre.id] = genre;
