@@ -44,7 +44,7 @@ const Trending = () => {
         <SwitchTabs data={['Day', 'Week']} onSwichTab={onSwichTab} />
       </div>
 
-      <Carousel data={data?.results} loading={loading} type={time} />
+      <Carousel data={data?.results} loading={loading} />
     </section>
   );
 };

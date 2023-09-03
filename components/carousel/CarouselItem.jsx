@@ -20,9 +20,13 @@ const CarouselItem = ({ item, type }) => {
       className="md:p-2 md:hover:opacity-80 cursor-pointer md:hover:bg-gray-900 md:rounded-md"
       onClick={() =>
         router.push(
-          `/explore/${item.media_type || type === 'tvshow' ? 'tv' : 'movie'}/${
-            item.id
-          }`
+          `/explore/${
+            item.media_type
+              ? item.media_type
+              : type === 'tvshow'
+              ? 'tv'
+              : 'movie'
+          }/${item.id}`
         )
       }
     >

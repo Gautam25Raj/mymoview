@@ -44,7 +44,7 @@ const NowPlaying = () => {
         <SwitchTabs data={['Movie', 'TvShow']} onSwichTab={onSwichTab} />
       </div>
 
-      <Carousel data={data?.results} loading={loading} />
+      <Carousel data={data?.results} loading={loading} type={time} />
     </section>
   );
 };
