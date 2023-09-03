@@ -11,16 +11,6 @@ const navListItems = [
     href: '/',
     icon: UserCircleIcon,
   },
-  {
-    label: 'Movies',
-    href: '/explore/movies',
-    icon: FilmIcon,
-  },
-  {
-    label: 'TV Shows',
-    href: '/explore/shows',
-    icon: TvIcon,
-  },
 ];
 
 function NavList() {
