@@ -22,7 +22,7 @@ export default function ComplexNavbar() {
   }, []);
 
   return (
-    <Navbar className="mx-auto max-w-screen-2xl p-4 bg-transparent border-none">
+    <Navbar className="relative mx-auto max-w-screen-2xl p-4 bg-transparent border-none z-[999]">
       <div className="relative mx-auto flex items-center text-blue-gray-900">
         <Link href="/" className="flex items-center">
           <Image

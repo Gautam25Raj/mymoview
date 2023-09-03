@@ -49,3 +49,173 @@ body {
   animation: shimmer 2s infinite;
   content: '';
 }
+
+.playbtn {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+}
+
+.playbtn svg {
+  width: 60px;
+}
+
+.playbtn .text {
+  font-size: 20px;
+  transition: all 0.7s ease-in-out;
+}
+
+.playbtn .triangle {
+  stroke-dasharray: 240;
+  stroke-dashoffset: 480;
+  stroke: white;
+  transform: translateY(0);
+  transition: all 0.7s ease-in-out;
+}
+
+.playbtn .circle {
+  stroke: white;
+  stroke-dasharray: 650;
+  stroke-dashoffset: 1300;
+  transition: all 0.5s ease-in-out;
+}
+
+.playbtn:hover .triangle {
+  stroke-dashoffset: 0;
+  opacity: 1;
+  animation: trailorPlay 0.7s ease-in-out;
+}
+
+.playbtn:hover .circle {
+  stroke-dashoffset: 0;
+}
+
+.videoPopup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 9;
+}
+
+.videoPopup .opacityLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+  opacity: 0;
+  transition: opacity 400ms;
+}
+
+.videoPopup .videoPlayer {
+  position: relative;
+  width: 800px;
+  aspect-ratio: 1.7777777778;
+  background-color: white;
+  transform: scale(0.2);
+  transition: transform 250ms;
+}
+
+.videoPopup .videoPlayer .closeBtn {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  color: white;
+  cursor: pointer;
+}
+
+.videoPopup.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.videoPopup.visible .opacityLayer {
+  opacity: 1;
+}
+
+.videoPopup.visible .videoPlayer {
+  transform: scale(1);
+}
+
+.castSection {
+  position: relative;
+  margin-bottom: 50px;
+}
+.castSection .sectionHeading {
+  font-size: 24px;
+  color: white;
+  margin-bottom: 25px;
+}
+.castSection .listItems {
+  display: flex;
+  gap: 20px;
+  overflow-y: hidden;
+  margin-right: -20px;
+  margin-left: -20px;
+  padding: 0 20px;
+}
+.castSection .listItems .listItem {
+  text-align: center;
+  color: white;
+}
+.castSection .listItems .listItem .profileImg {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.castSection .listItems .listItem .profileImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.castSection .listItems .listItem .name {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+}
+.castSection .listItems .listItem .character {
+  font-size: 14px;
+  line-height: 20px;
+  opacity: 0.5;
+}
+.castSection .castSkeleton {
+  display: flex;
+  gap: 20px;
+  overflow-y: hidden;
+  margin-right: -20px;
+  margin-left: -20px;
+  padding: 0 20px;
+}
+.castSection .castSkeleton .skItem .circle {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+.castSection .castSkeleton .skItem .row {
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.castSection .castSkeleton .skItem .row2 {
+  width: 75%;
+  height: 20px;
+  border-radius: 10px;
+  margin: 0 auto;
+}

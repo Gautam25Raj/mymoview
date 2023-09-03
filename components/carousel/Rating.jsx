@@ -2,9 +2,9 @@ import React from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const Rating = ({ rating }) => {
+const Rating = ({ rating, size, font }) => {
   return (
-    <div className="bg-black rounded-full p-0.5 z-50 overflow-hidden">
+    <div className="bg-black/40 rounded-full p-0.5 z-50 overflow-hidden w-fit">
       <CircularProgressbar
         value={rating}
         maxValue={10}
@@ -13,10 +13,10 @@ const Rating = ({ rating }) => {
           pathColor: rating < 5 ? 'red' : rating < 7 ? 'orange' : 'green',
           textColor: 'white',
           trailColor: 'transparent',
-          textSize: '24px',
+          textSize: font ? font : '24px',
           backgroundColor: 'transparent',
         })}
-        className="w-12 h-12"
+        className={size ? size : 'w-12 h-12'}
       />
     </div>
   );
