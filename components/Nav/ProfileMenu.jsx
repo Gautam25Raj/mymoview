@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Typography,
   Button,
@@ -18,14 +18,15 @@ import {
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/navigation';
+import { logout } from '@/redux/slice/authSlice';
+
 const profileMenuItems = [
   {
     label: 'My Profile',
     icon: UserCircleIcon,
-  },
-  {
-    label: 'Edit Profile',
-    icon: Cog6ToothIcon,
+    href: '/profile',
   },
   {
     label: 'Sign Out',
@@ -36,8 +37,27 @@ const profileMenuItems = [
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const { isAuth } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    setIsLoggedIn(isAuth);
+  }, [isAuth]);
 
   const closeMenu = () => setIsMenuOpen(false);
+
+  const handleClick = (label) => {
+    closeMenu();
+    console.log(label);
+    if (label === 'Sign Out') {
+      console.log('sign out');
+      dispatch(logout());
+    } else {
+      router.push('/profile');
+    }
+  };
 
   return isLoggedIn ? (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -68,7 +88,7 @@ function ProfileMenu() {
           return (
             <MenuItem
               key={label}
-              onClick={closeMenu}
+              onClick={() => handleClick(label)}
               className={`flex items-center gap-2 rounded ${
                 isLastItem
                   ? 'hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10'

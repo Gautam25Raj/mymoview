@@ -9,31 +9,37 @@ import {
   Typography,
 } from '@material-tailwind/react';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { login } from '@/redux/slice/authSlice';
+import { useRouter } from 'next/navigation';
 
 function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
+  const [name, setName] = useState('gautam');
+  const [email, setEmail] = useState('gau@gg.com');
+  const [password, setPassword] = useState('sjfisjoididwsod');
+  const dispatch = useDispatch();
+  const router = useRouter();
 
-  const handleLogin = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch('/api/user/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+    const response = await fetch('/api/auth', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email, password }),
+    });
 
-      if (!response.ok) {
-        throw new Error('Login failed');
-      }
-    } catch (err) {
-      setError('Invalid credentials. Please try again.');
+    if (!response.ok) {
+      throw new Error('Login failed');
     }
+
+    console.log(response);
+
+    dispatch(login({ name, email }));
+
+    router.push('/');
   };
 
   return (
@@ -50,29 +56,38 @@ function Register() {
         Enter your details to register.
       </Typography>
 
-      <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+      <form
+        onSubmit={handleRegister}
+        className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+      >
         <div className="mb-4 flex flex-col gap-6">
           <Input
             color="white"
             type="name"
+            name="name"
             size="lg"
             label="Name"
+            required
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <Input
             color="white"
             type="email"
+            name="email"
             size="lg"
             label="Email"
+            required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             color="white"
+            name="password"
             type="password"
             size="lg"
             label="Password"
+            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -96,7 +111,7 @@ function Register() {
           }
           containerProps={{ className: '-ml-2.5' }}
         />
-        <Button className="mt-6" color="white" fullWidth>
+        <Button type="submit" className="mt-6" color="white" fullWidth>
           Register
         </Button>
 

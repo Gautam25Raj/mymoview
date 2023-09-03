@@ -1,41 +1,101 @@
 'use client';
 
-import { login } from '@/redux/slice/authSlice';
+import React, { useState } from 'react';
+import { Card, Input, Button, Typography } from '@material-tailwind/react';
+import Link from 'next/link';
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { login } from '@/redux/slice/authSlice';
+import { useRouter } from 'next/navigation';
 
-const Login = () => {
-  const [name, setName] = useState('');
+function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
+  const router = useRouter();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    dispatch(login({ name, email }));
+
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        setError('Something went wrong.');
+        throw new Error('Login failed');
+      }
+
+      dispatch(login({ email }));
+
+      router.push('/');
+    } catch (err) {
+      setError('Invalid credentials. Please try again.');
+    }
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="name"
-        className="text-black"
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin}>Login</button>
-    </div>
-  );
-};
+    <Card
+      color="transparent"
+      shadow={false}
+      className="my-24 mx-auto w-fit px-10 py-16 bg-gray-900"
+    >
+      <Typography variant="h2" color="white">
+        Login
+      </Typography>
 
-export default Login;
+      <Typography color="white" className="mt-1 font-normal">
+        Enter your details to Login.
+      </Typography>
+
+      <form
+        onSubmit={handleLogin}
+        className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+      >
+        {error && (
+          <p className="text-red-700 text-xl text-center mb-8">{error}</p>
+        )}
+        <div className="mb-4 flex flex-col gap-6">
+          <Input
+            color="white"
+            type="email"
+            size="lg"
+            label="Email"
+            name="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            color="white"
+            type="password"
+            size="lg"
+            label="Password"
+            name="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+
+        <Button type="submit" className="mt-6" color="white" fullWidth>
+          Login
+        </Button>
+
+        <Typography color="gray" className="mt-4 text-center font-normal">
+          Creating a New Account?{' '}
+          <Link href="/register" className="font-medium text-white">
+            Register
+          </Link>
+        </Typography>
+      </form>
+    </Card>
+  );
+}
+
+export default Register;

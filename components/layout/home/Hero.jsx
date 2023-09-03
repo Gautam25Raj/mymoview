@@ -4,18 +4,25 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
-import useMovies from '@/hooks/useMovies';
+async function getNowPlaying() {
+  const res = await fetch(`${process.env.URL}/api/movie/nowPlaying`);
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
 
 const Hero = () => {
   const [background, setBackground] = useState('');
   const [query, setQuery] = useState('');
   const router = useRouter();
   const { url } = useSelector((state) => state.home);
-  const { getNowPlayingMovies } = useMovies();
 
   useEffect(() => {
     const getBackground = async () => {
-      const data = await getNowPlayingMovies();
+      const data = await getNowPlaying();
       const bg =
         url &&
         url.images &&
@@ -29,7 +36,7 @@ const Hero = () => {
     if (url != undefined) {
       getBackground();
     }
-  }, [url, getNowPlayingMovies]);
+  }, [url]);
 
   const searchQueryHandler = (event) => {
     if (event.key === 'Enter' && query.length > 0) {
