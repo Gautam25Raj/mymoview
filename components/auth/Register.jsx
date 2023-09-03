@@ -14,9 +14,9 @@ import { login } from '@/redux/slice/authSlice';
 import { useRouter } from 'next/navigation';
 
 function Register() {
-  const [name, setName] = useState('gautam');
-  const [email, setEmail] = useState('gau@gg.com');
-  const [password, setPassword] = useState('sjfisjoididwsod');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const router = useRouter();
 
