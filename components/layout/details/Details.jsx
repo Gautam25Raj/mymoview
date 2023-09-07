@@ -1,9 +1,14 @@
 'use client';
 
-import DetailsHeader from './DetailsHeader';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+
+import DetailsHeader from './DetailsHeader';
 import Cast from './Cast';
+import Similar from './Similar';
+import Recommended from './Recommended';
+import VideosList from './VideosList';
+import ImagesList from './ImagesList';
 
 async function getCreditsDetails(type, id) {
   const res = await fetch(
@@ -32,12 +37,14 @@ const Details = () => {
   }, [id, mediaType]);
 
   return (
-    loading && (
-      <>
-        <DetailsHeader credits={credits.crew} />
-        <Cast data={credits.cast} loading={!loading} />
-      </>
-    )
+    <>
+      <DetailsHeader credits={credits?.crew} />
+      <Cast data={credits?.cast} loading={!loading} />
+      <ImagesList />
+      <VideosList />
+      <Recommended />
+      <Similar />
+    </>
   );
 };
 

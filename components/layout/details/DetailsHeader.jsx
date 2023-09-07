@@ -1,11 +1,11 @@
 'use client';
 
-import Rating from '@/components/carousel/Rating';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import PlayIcon from './PlayIcon';
+
+import Rating from '@/components/carousel/Rating';
 
 async function getDetails(type, id) {
   const res = await fetch(`${process.env.URL}/api/details/${type}/${id}`);
@@ -46,9 +46,28 @@ const DetailsHeader = ({ credits }) => {
   );
 
   return loading ? (
-    <div>Loading...</div>
+    <div className="bg-gray-800/8 flex relative flex-col gap-6 md:gap-12 md:flex-row md:px-10 md:py-20">
+      <div className="w-[325px] bg-gray-800 block rounded-lg aspect-1/1.5 skeleton"></div>
+      <div className="w-full">
+        <div className="bg-gray-800 w-2/4 h-6 mb-5 rounded-2xl skeleton"></div>
+        <div className="bg-gray-800 w-1/4 h-6 mb-5 rounded-2xl skeleton"></div>
+        <div className="bg-gray-800 w-1/4 h-6 mb-5 rounded-2xl skeleton"></div>
+        <div className="bg-gray-800 w-2/4 h-6 mb-5 rounded-2xl skeleton"></div>
+        <div className="w-full mb-5 skeleton">
+          <div className="bg-gray-800 h-3 mb-2 rounded-2xl skeleton"></div>
+          <div className="bg-gray-800 h-3 mb-2 rounded-2xl skeleton"></div>
+          <div className="bg-gray-800 h-3 mb-2 rounded-2xl skeleton"></div>
+          <div className="bg-gray-800 h-3 mb-2 rounded-2xl skeleton"></div>
+          <div className="bg-gray-800 h-3 mb-2 rounded-2xl skeleton"></div>
+        </div>
+        <div className="bg-gray-800 w-3/4 h-6 mb-5 rounded-2xl skeleton"></div>
+        <div className="bg-gray-800 w-3/4 h-6 mb-5 rounded-2xl skeleton"></div>
+        <div className="bg-gray-800 w-3/4 h-6 mb-5 rounded-2xl skeleton"></div>
+        <div className="bg-gray-800 w-3/4 h-6 mb-5 rounded-2xl skeleton"></div>
+      </div>
+    </div>
   ) : (
-    <section className="w-full bg-black p-24 mb-12 relative">
+    <section className="w-full bg-black p-10 xl:p-24 mb-12 relative">
       <div className="w-full h-full absolute top-0 left-0 opacity-50 overflow-hidden">
         <Image
           src={`https://image.tmdb.org/t/p/original${details?.backdrop_path}`}
@@ -61,9 +80,9 @@ const DetailsHeader = ({ credits }) => {
 
       <div className="w-full h-1/4 absolute bottom-0 left-0 hero-bg"></div>
 
-      <div className="flex items-center w-full h-full gap-12">
+      <div className="flex md:items-center w-full h-full gap-12 flex-col md:flex-row">
         {details?.poster_path ? (
-          <div className="border-8 border-white/40 z-10 flex rounded-xl">
+          <div className="border-8 border-white/40 z-10 flex rounded-xl w-fit">
             <Image
               src={`https://image.tmdb.org/t/p/original${details?.poster_path}`}
               width={350}
@@ -115,7 +134,7 @@ const DetailsHeader = ({ credits }) => {
             />
           </div>
 
-          <div className="max-w-lg mb-12">
+          <div className="max-w-xl mb-12">
             <h3 className="text-3xl mb-2">Overview</h3>
             <p>{details?.overview && details?.overview}</p>
           </div>

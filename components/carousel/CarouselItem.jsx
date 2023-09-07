@@ -30,7 +30,7 @@ const CarouselItem = ({ item, type }) => {
         )
       }
     >
-      <div className="relative mb-7 flex items-end justify-between p-2 h-64 md:h-80 aspect-1/1.5 rounded-md overflow-hidden">
+      <div className="relative mb-7 flex items-end justify-between p-2 h-64 md:h-80 aspect-1/1.5 rounded-md overflow-hidden bg-gray-800">
         <Image
           src={posterUrl}
           fill

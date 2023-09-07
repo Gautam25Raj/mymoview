@@ -13,18 +13,6 @@ module.exports = withMT({
       aspectRatio: {
         '1/1.5': '1 / 1.5',
       },
-
-      keyframes: {
-        shimmer: {
-          '100%': {
-            transform: 'translateX(100%)',
-          },
-        },
-      },
-
-      animation: {
-        shimmer: 'shimmer .5s ease-in-out 1',
-      },
     },
   },
   plugins: [
