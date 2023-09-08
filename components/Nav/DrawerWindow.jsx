@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
@@ -8,16 +8,21 @@ import { Drawer, Typography, IconButton } from '@material-tailwind/react';
 
 const DrawerWindow = ({ open, closeDrawer }) => {
   const router = useRouter();
+  const [query, setQuery] = useState('');
 
   const searchQueryHandler = (event) => {
     if (event.key === 'Enter' && query.length > 0) {
       router.push(`/search/${query}`);
+      closeDrawer();
+      setQuery('');
     }
   };
 
   const handleSearchClick = () => {
     if (query.length > 0) {
       router.push(`/search/${query}`);
+      closeDrawer();
+      setQuery('');
     }
   };
 
@@ -56,6 +61,7 @@ const DrawerWindow = ({ open, closeDrawer }) => {
         <input
           type="text"
           placeholder="Search movies or tv shows...."
+          value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyUp={searchQueryHandler}
           className="w-11/12 h-12 bg-white outline-none pl-2 pr-4 text-md md:h-14 md:text-xl md:pl-3 md:pr-7 text-black"

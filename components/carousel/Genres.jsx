@@ -28,26 +28,7 @@ async function getTvshowsGenres() {
 
 const Genres = ({ ids }) => {
   const dispatch = useDispatch();
-  // const [genres, setGenres] = useState({});
   const { genres } = useSelector((state) => state.home);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const allGenres = [];
-
-  //     const movieGenres = await getMovieGenres();
-  //     const tvshowsGenres = await getTvshowsGenres();
-  //     [movieGenres, tvshowsGenres].map((genres) => {
-  //       genres.genres.map((genre) => {
-  //         allGenres[genre.id] = genre;
-  //       });
-  //     });
-  //     dispatch(getGenres(allGenres));
-  //     setGenres(allGenres);
-  //   };
-
-  //   fetchData();
-  // }, [dispatch]);
 
   return (
     genres && (

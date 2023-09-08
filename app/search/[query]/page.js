@@ -1,3 +1,9 @@
+import SearchResult from '@/components/layout/searchResults/SearchResult';
+
 export default function Home() {
-  return <main>search</main>;
+  return (
+    <main>
+      <SearchResult />
+    </main>
+  );
 }
