@@ -1,34 +1,112 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Personal Movie & TV Show Website using Syncloop API
+
+Welcome to the Personal Movie & TV Show Website! Discover, explore, and immerse yourself in the world of movies and TV shows with this interactive web application powered by the TMDB (The Movie Database) API.
+
+## Demo
+<details>
+  <summary>Click to expand and see demo images</summary>
+
+
+  ### Homepage
+  <details>
+  <summary>Click to expand and see Homepage</summary>
+    
+  ![Homepage Screenshot](https://github.com/Gautam25Raj/mymoview/assets/63155224/ced3147a-8d5d-422d-bbcb-c49205671fbf)
+  </details>
+
+  ### Details Page
+  <details>
+  <summary>Click to expand and see Details page</summary>
+    
+  ![Details Page](https://github.com/Gautam25Raj/mymoview/assets/63155224/b0815c34-5dfe-4a91-9ccf-d5be2420e32d)
+  </details>
+
+  ### Search Page
+  <details>
+  <summary>Click to expand and see search page</summary>
+    
+  ![Search Page](https://github.com/Gautam25Raj/mymoview/assets/63155224/3d6a8920-73dc-4a24-848f-57d040a5e853)
+  </details>
+
+  ### Login/Signup Page
+  <details>
+  <summary>Click to expand and see signup page</summary>
+    
+  ![Signup page](https://github.com/Gautam25Raj/mymoview/assets/63155224/3e400011-0cd1-4ef8-8164-44e18c17672f)
+  </details>
+
+</details>
+
+## Features
+
+- **Homepage with Movie/TV Show Listings**: Explore trending movies and TV shows, discover popular titles, find top-rated selections, and get a sneak peek at upcoming releases, all on the homepage.
+
+- **Search Functionality**: Use the search bar to quickly find specific movies or TV shows by title, genre, or keywords. It's your gateway to a vast library of entertainment.
+
+- **Detailed Movie/TV Show Pages**: Dive deep into your favorite content! Click on a movie or TV show to access comprehensive details, including title, release date, genre, overview, rating, cast and crew information, and more. Plus, get recommendations for similar titles to keep your watchlist growing.
+
+- **Customizable Design**: Make it your own! Customize the website's appearance with your preferred font choices, color schemes, and layout. Express your unique style and create a personalized viewing experience.
+
+- **TMDB API Integration**: We keep it fresh! Our website connects seamlessly with the TMDB API to fetch real-time data, ensuring that you always have the latest and most accurate information at your fingertips.
+
+## Homepage
+The homepage serves as the gateway to a world of entertainment. Here's what you can expect from the homepage:
+
+- **Trending Movies & TV Shows**: Get an overview of what's currently trending in the world of movies and TV shows.
+- **Popular Titles**: Discover the most popular movies and TV shows that everyone's talking about.
+- **Top-Rated Selections**: Explore the highest-rated content to ensure you don't miss out on hidden gems.
+- **Upcoming Releases**: Stay ahead of the curve by checking out upcoming movie and TV show releases.
+- **Search Functionality**: Use the search bar to find specific content based on titles, genres, or keywords.
+
+## Movie/Tv Shows Details Page
+
+When you click on a movie or Tv Shows, you'll be taken to the details page, where you can dive deep into your favorite films or Tv Shows. Here's what you'll find:
+
+- **Title & Overview**: Get an overview, plot and storyline.
+- **Release Date & Genre**: Find out when the movie was released and its genre.
+- **Rating & Reviews**: Discover the movie's or Tv Shows's rating.
+- **Cast & Crew**: Get to know the actors, directors, and other key contributors to the film.
+- **Related Movies**: Receive recommendations for similar movies to expand your watchlist.
 
 ## Getting Started
 
-First, run the development server:
+First, install all the dependencies :
+
+```bash
+npm install
+```
+
+Run the development server :
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Build the production code :
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Run the production code :
 
-## Learn More
+```bash
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Environment Variables Setup Guide
+To run this project, you need `.env` files in your root folders. Add the following environment variables to your .env file: 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`API_TOKEN` : Your TMDB Api token.
+`BEARER_TOKEN`: Your Syncloop token.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<br>
 
-## Deploy on Vercel
+**Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
+This project is licensed under the MIT License - see the LICENSE.md file for details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Acknowledgments
+Special thanks to **TMDB** and **Syncloop** for providing the API that powers this project.
+Shoutout to the open-source community for their valuable contributions.
