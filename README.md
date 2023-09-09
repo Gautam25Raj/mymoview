@@ -97,7 +97,8 @@ npm run start
 ## Environment Variables Setup Guide
 To run this project, you need `.env` files in your root folders. Add the following environment variables to your .env file: 
 
-`API_Token` : Your Syncloop token.
+`API_TOKEN` : Your TMDB Api token.
+`BEARER_TOKEN`: Your Syncloop token.
 
 <br>
 
