@@ -26,7 +26,7 @@ const ImagesList = () => {
       const data = await getImages(mediaType, id);
       setImages(data);
       console.log(data);
-      setImageId(data.posters[0].file_path);
+      setImageId(data?.posters ? data.posters[0]?.file_path : '');
       setLoading(false);
     };
     getData();
@@ -48,12 +48,16 @@ const ImagesList = () => {
         {!loading ? (
           <div>
             <div className="w-full md:w-4/5 aspect-video bg-gray-800 mx-auto rounded-lg mb-10">
-              <Image
-                src={`https://image.tmdb.org/t/p/original/${imageId}`}
-                layout="fill"
-                alt={imageId ? imageId : 'No Image'}
-                className="object-cover rounded-lg transition-all"
-              />
+              {imageId ? (
+                <Image
+                  src={`https://image.tmdb.org/t/p/original/${imageId}`}
+                  layout="fill"
+                  alt={imageId ? imageId : 'No Image'}
+                  className="object-cover rounded-lg transition-all"
+                />
+              ) : (
+                <div className="text-center">No Images found 😢</div>
+              )}
             </div>
             <div className="flex gap-2 overflow-x-auto no-scrollbar::-webkit-scrollbar no-scrollbar -mx-5 px-5 md:gap-5 md:m-0 md:p-0">
               {images?.backdrops?.length > 0 ? (

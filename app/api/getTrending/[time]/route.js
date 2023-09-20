@@ -6,7 +6,7 @@ export async function GET(request, { params }) {
   const time = params.time;
 
   const res = await fetch(
-    `https://cloud.syncloop.com/tenant/1693597273751/packages.MyMoView.tmdb.common.getTrending.main?apiKey=${apiKey}&time=${time}`,
+    `https://api.themoviedb.org/3/trending/all/${time}?apiKey=${apiKey}`,
     {
       headers: {
         Authorization: `Bearer ${bearerToken}`,
@@ -16,5 +16,5 @@ export async function GET(request, { params }) {
   );
   const data = await res.json();
 
-  return NextResponse.json(data.response.jsonDoc);
+  return NextResponse.json(data);
 }

@@ -1,14 +1,12 @@
 import { NextResponse } from 'next/server';
 
 export async function GET(request, { params }) {
-  const bearerToken = process.env.BEARER_TOKEN;
-  const userEmail = params.userEmail;
+  const { userId } = params;
 
   const res = await fetch(
-    `https://cloud.syncloop.com/tenant/1693597273751/packages.MyMoView.adapter.APIs.getAPI.getUserByEmail.main?email=${userEmail}`,
+    `https://noisy-aqua.cmd.outerbase.io/getWatchedMovie?user_id=${userId}`,
     {
       headers: {
-        Authorization: `Bearer ${bearerToken}`,
         'Content-Type': 'application/json',
       },
     }

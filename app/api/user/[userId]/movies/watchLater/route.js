@@ -1,14 +1,12 @@
 import { NextResponse } from 'next/server';
 
 export async function GET(request, { params }) {
-  const bearerToken = process.env.BEARER_TOKEN;
-  const apiKey = process.env.API_KEY;
+  const { userId } = params;
 
   const res = await fetch(
-    `https://api.themoviedb.org/3/tv/top_rated?apiKey=${apiKey}`,
+    `https://noisy-aqua.cmd.outerbase.io/getWatchLaterMovies?user_id=${userId}`,
     {
       headers: {
-        Authorization: `Bearer ${bearerToken}`,
         'Content-Type': 'application/json',
       },
     }

@@ -5,7 +5,7 @@ export async function GET(request, { params }) {
   const apiKey = process.env.API_KEY;
 
   const res = await fetch(
-    `https://cloud.syncloop.com/tenant/1693597273751/packages.MyMoView.tmdb.config.main?apiKey=${apiKey}`,
+    `https://api.themoviedb.org/3/configuration?apiKey=${apiKey}`,
     {
       headers: {
         Authorization: `Bearer ${bearerToken}`,
@@ -15,5 +15,5 @@ export async function GET(request, { params }) {
   );
   const data = await res.json();
 
-  return NextResponse.json(data.response.jsonDoc);
+  return NextResponse.json(data);
 }

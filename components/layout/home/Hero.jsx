@@ -24,11 +24,8 @@ const Hero = () => {
     const getBackground = async () => {
       const data = await getNowPlaying();
       const bg =
-        url &&
-        url.images &&
-        url.images.secure_base_url +
-          'original' +
-          data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
+        'https://image.tmdb.org/t/p/original' +
+        data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
 
       setBackground(bg);
     };

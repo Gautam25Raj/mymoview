@@ -31,6 +31,7 @@ const Details = () => {
     const getData = async () => {
       const data = await getCreditsDetails(mediaType, id);
       setCredits(data);
+      console.log(credits);
       setLoading(true);
     };
     getData();

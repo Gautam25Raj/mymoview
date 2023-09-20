@@ -27,7 +27,7 @@ const VideosList = () => {
     const getData = async () => {
       const data = await getVideos(mediaType, id);
       setVideos(data);
-      setVideoId(data?.results[0]?.key);
+      setVideoId(data?.results ? data.results[0]?.key : null);
       setLoading(false);
     };
     getData();
@@ -48,14 +48,18 @@ const VideosList = () => {
         <div className="text-2xl text-white mb-6">Official Videos</div>
         {!loading ? (
           <div>
-            <div className="w-full md:w-4/5 aspect-video bg-gray-800 mx-auto rounded-lg mb-10">
-              <ReactPlayer
-                url={`https://www.youtube.com/watch?v=${videoId}`}
-                controls
-                width="100%"
-                height="100%"
-              />
-            </div>
+            {videoId ? (
+              <div className="w-full md:w-4/5 aspect-video bg-gray-800 mx-auto rounded-lg mb-10">
+                <ReactPlayer
+                  url={`https://www.youtube.com/watch?v=${videoId}`}
+                  controls
+                  width="100%"
+                  height="100%"
+                />
+              </div>
+            ) : (
+              <div className="text-center">No Videos found 😢</div>
+            )}
             <div className="flex gap-2 overflow-x-auto no-scrollbar::-webkit-scrollbar no-scrollbar -mx-5 px-5 md:gap-5 md:m-0 md:p-0">
               {videos?.results?.length > 0 ? (
                 videos?.results?.map((video) => (

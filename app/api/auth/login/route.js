@@ -5,29 +5,23 @@ export async function POST(request, { params }) {
 
   const { email, password } = await request.json();
 
-  const res = await fetch(
-    `https://cloud.syncloop.com/tenant/1693597273751/packages.MyMoView.adapter.APIs.getAPI.getUserByEmail.main?email=${email}`,
-    {
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-        'Content-Type': 'application/json',
-      },
-    }
-  );
+  const res = await fetch(`https://noisy-aqua.cmd.outerbase.io/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+    }),
+  });
 
   const user = await res.json();
 
-  if (user.response.password !== password)
+  if (user.response.items[0].password_hash !== password)
     return NextResponse.error({
       status: 401,
       message: 'Unauthorized',
     });
 
-  return NextResponse.json({
-    user: {
-      id: user.response.id,
-      email: user.response.email,
-      name: user.response.name,
-    },
-  });
+  return NextResponse.json(user);
 }

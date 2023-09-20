@@ -39,7 +39,6 @@ async function getTvshowsGenres() {
 export default function Home() {
   // const data = await getTopMovies();
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,15 +49,12 @@ export default function Home() {
 
       const movieGenres = await getMovieGenres();
       const tvshowsGenres = await getTvshowsGenres();
-      console.log(movieGenres);
       [movieGenres, tvshowsGenres].map((genres) => {
         genres.genres.map((genre) => {
           allGenres[genre.id] = genre;
         });
       });
       dispatch(getGenres(allGenres));
-
-      setLoading(false);
     };
 
     fetchData();
