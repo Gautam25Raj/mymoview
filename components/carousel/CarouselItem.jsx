@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Rating from './Rating';
 import Genres from './Genres';
 
-const CarouselItem = ({ item, type }) => {
+const CarouselItem = ({ item, type, noGenre }) => {
   const router = useRouter();
 
   const posterUrl = item.poster_path
@@ -31,12 +31,12 @@ const CarouselItem = ({ item, type }) => {
         <Image
           src={posterUrl}
           fill
-          alt={item.title || item.name}
+          alt={item.title || item.name || ''}
           objectFit="cover"
           className=""
         />
 
-        <Rating rating={item.vote_average.toFixed(1)} />
+        <Rating rating={item?.vote_average?.toFixed(1)} />
       </div>
 
       <div className="flex flex-col">
@@ -44,7 +44,7 @@ const CarouselItem = ({ item, type }) => {
           {item.title || item.name}
         </h3>
 
-        <Genres ids={item.genre_ids.slice(0, 2)} />
+        {!noGenre && <Genres ids={item.genre_ids.slice(0, 2)} />}
 
         <span className="text-sm opacity-50">
           {dayjs(item.release_date || item.first_air_date).format(

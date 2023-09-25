@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import CarouselItem from './carousel/CarouselItem';
 
-const Carousel = ({ data, loading, type }) => {
+const Carousel = ({ data, loading, type, noGenre }) => {
   const carouselContainer = useRef();
 
   const navigation = (direction) => {
@@ -64,7 +64,12 @@ const Carousel = ({ data, loading, type }) => {
           ref={carouselContainer}
         >
           {data?.map((item) => (
-            <CarouselItem key={item.id} item={item} type={type} />
+            <CarouselItem
+              key={item.id}
+              item={item}
+              type={type}
+              noGenre={noGenre}
+            />
           ))}
         </div>
       )}
