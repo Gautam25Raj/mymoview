@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { UseSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getApiConfig, getGenres } from '@/redux/slice/homeSlice';
 import { login } from '@/redux/slice/authSlice';
 
@@ -27,15 +27,15 @@ async function getMovieGenres() {
   return res.json();
 }
 
-// async function checkUser() {
-//   const res = await fetch(`${process.env.URL}/api/auth/check`);
+async function checkUser() {
+  const res = await fetch(`${process.env.URL}/api/auth/check`);
 
-//   if (!res.ok) {
-//     console.log('No user found');
-//   }
+  if (!res.ok) {
+    console.log('No user found');
+  }
 
-//   return res.json();
-// }
+  return res.json();
+}
 
 async function getTvshowsGenres() {
   const res = await fetch(`${process.env.URL}/api/tvshow/genres`);
@@ -50,16 +50,18 @@ async function getTvshowsGenres() {
 export default function Home() {
   // const data = await getTopMovies();
   const dispatch = useDispatch();
+  const { isAuth } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getConfig();
       dispatch(getApiConfig(data));
 
-      // const { user_id, username, email } = await checkUser();
-      // if (username && email) {
-      //   dispatch(login({ id: user_id, name: username, email }));
-      // }
+      const { user_id, username, email } = await checkUser();
+
+      if (username && email) {
+        dispatch(login({ id: user_id, name: username, email }));
+      }
 
       const allGenres = [];
 
@@ -74,7 +76,7 @@ export default function Home() {
     };
 
     fetchData();
-  }, []);
+  }, [isAuth, dispatch]);
 
   return (
     <>

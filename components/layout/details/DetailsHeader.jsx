@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import Rating from '@/components/carousel/Rating';
 import UserBtn from '@/components/UserBtn';
@@ -22,6 +23,7 @@ async function getDetails(type, id) {
 }
 
 const DetailsHeader = ({ credits }) => {
+  const { isAuth } = useSelector((state) => state.auth);
   const { mediaType, id } = useParams();
   const [details, setDetails] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -138,11 +140,13 @@ const DetailsHeader = ({ credits }) => {
             />
           </div>
 
-          <div className="flex gap-5">
-            <ToggleFavoriteButton />
-            <ToggleWatchedButton />
-            <ToggleLaterButton />
-          </div>
+          {isAuth && (
+            <div className="flex gap-5">
+              <ToggleFavoriteButton />
+              <ToggleWatchedButton />
+              <ToggleLaterButton />
+            </div>
+          )}
 
           <div className="max-w-xl mb-12">
             <h3 className="text-3xl mb-2">Overview</h3>

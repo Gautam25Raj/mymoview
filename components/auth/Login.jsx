@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Input, Button, Typography } from '@material-tailwind/react';
 import Link from 'next/link';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { login } from '@/redux/slice/authSlice';
 import { useRouter } from 'next/navigation';
 
 function Register() {
-  const [email, setEmail] = useState('check@12.com');
-  const [password, setPassword] = useState('dswdjjdowodw');
+  const [email, setEmail] = useState('gautam18@gg.com');
+  const [password, setPassword] = useState('hello@1234');
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -31,7 +31,11 @@ function Register() {
         throw new Error('Login failed');
       }
 
-      // dispatch(login({ id: user_id, name: username, email }));
+      const currentUser = await response.json();
+
+      dispatch(
+        login({ id: currentUser.user_id, name: currentUser.name, email })
+      );
 
       router.push('/');
     } catch (err) {

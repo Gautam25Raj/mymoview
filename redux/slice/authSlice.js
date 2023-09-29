@@ -21,6 +21,7 @@ export const authSlice = createSlice({
       state.user.email = action.payload.email;
     },
     logout: () => {
+      state.isAuth = false;
       return initialState;
     },
   },

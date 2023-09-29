@@ -31,11 +31,13 @@ function Register() {
       body: JSON.stringify({ name, email, password }),
     });
 
+    const userId = await response.json();
+
     if (!response.ok) {
       throw new Error('Login failed');
     }
 
-    // dispatch(login({ id: 0, name: name, email }));
+    dispatch(login({ id: userId.response.items[0], name: name, email }));
 
     router.push('/');
   };
