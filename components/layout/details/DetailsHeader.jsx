@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import Rating from '@/components/carousel/Rating';
+import UserBtn from '@/components/UserBtn';
 
 async function getDetails(type, id) {
   const res = await fetch(`${process.env.URL}/api/details/${type}/${id}`);
@@ -133,6 +134,8 @@ const DetailsHeader = ({ credits }) => {
               font="28px"
             />
           </div>
+
+          <UserBtn />
 
           <div className="max-w-xl mb-12">
             <h3 className="text-3xl mb-2">Overview</h3>

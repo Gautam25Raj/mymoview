@@ -14,9 +14,9 @@ import { login } from '@/redux/slice/authSlice';
 import { useRouter } from 'next/navigation';
 
 function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState('Gautam');
+  const [email, setEmail] = useState('gautam@gg.com');
+  const [password, setPassword] = useState('hello@1234');
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -35,9 +35,7 @@ function Register() {
       throw new Error('Login failed');
     }
 
-    console.log(response);
-
-    dispatch(login({ name, email }));
+    // dispatch(login({ id: 0, name: name, email }));
 
     router.push('/');
   };

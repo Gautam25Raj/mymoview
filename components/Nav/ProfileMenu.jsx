@@ -50,8 +50,8 @@ function ProfileMenu() {
 
   const handleClick = (label) => {
     closeMenu();
-    console.log(label);
     if (label === 'Sign Out') {
+      fetch(`${process.env.URL}/api/auth/logout`);
       console.log('sign out');
       dispatch(logout());
     } else {

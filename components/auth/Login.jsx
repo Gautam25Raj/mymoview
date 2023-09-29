@@ -8,8 +8,8 @@ import { login } from '@/redux/slice/authSlice';
 import { useRouter } from 'next/navigation';
 
 function Register() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('check@12.com');
+  const [password, setPassword] = useState('dswdjjdowodw');
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -31,7 +31,7 @@ function Register() {
         throw new Error('Login failed');
       }
 
-      dispatch(login({ email }));
+      // dispatch(login({ id: user_id, name: username, email }));
 
       router.push('/');
     } catch (err) {

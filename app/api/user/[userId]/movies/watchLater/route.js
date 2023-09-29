@@ -4,7 +4,7 @@ export async function GET(request, { params }) {
   const { userId } = params;
 
   const res = await fetch(
-    `https://noisy-aqua.cmd.outerbase.io/getWatchLaterMovies?user_id=${userId}`,
+    `https://noisy-aqua.cmd.outerbase.io/getWatchLaterMovie?user_id=${userId}`,
     {
       headers: {
         'Content-Type': 'application/json',

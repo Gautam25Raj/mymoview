@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { UseSelector, useDispatch } from 'react-redux';
 import { getApiConfig, getGenres } from '@/redux/slice/homeSlice';
+import { login } from '@/redux/slice/authSlice';
 
 import HomeSection from '@/components/layout/home/Home';
 
@@ -26,6 +27,16 @@ async function getMovieGenres() {
   return res.json();
 }
 
+async function checkUser() {
+  const res = await fetch(`${process.env.URL}/api/auth/check`);
+
+  if (!res.ok) {
+    console.log('No user found');
+  }
+
+  return res.json();
+}
+
 async function getTvshowsGenres() {
   const res = await fetch(`${process.env.URL}/api/tvshow/genres`);
 
@@ -44,6 +55,11 @@ export default function Home() {
     const fetchData = async () => {
       const data = await getConfig();
       dispatch(getApiConfig(data));
+
+      const { user_id, username, email } = await checkUser();
+      if (username && email) {
+        dispatch(login({ id: user_id, name: username, email }));
+      }
 
       const allGenres = [];
 
