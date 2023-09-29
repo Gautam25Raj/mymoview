@@ -13,14 +13,13 @@ import {
 import {
   UserCircleIcon,
   ChevronDownIcon,
-  Cog6ToothIcon,
   PowerIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import { logout } from '@/redux/slice/authSlice';
+import { login, logout } from '@/redux/slice/authSlice';
 
 const profileMenuItems = [
   {
@@ -34,6 +33,16 @@ const profileMenuItems = [
   },
 ];
 
+async function checkUser() {
+  const res = await fetch(`${process.env.URL}/api/auth/check`);
+
+  if (!res.ok) {
+    console.log('No user found');
+  }
+
+  return res.json();
+}
+
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -43,8 +52,16 @@ function ProfileMenu() {
   const { isAuth } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    setIsLoggedIn(isAuth);
-  }, [isAuth]);
+    const checkAuth = async () => {
+      const { user_id, username, email } = await checkUser();
+      if (username && email) {
+        dispatch(login({ id: user_id, name: username, email }));
+      }
+
+      setIsLoggedIn(isAuth);
+    };
+    checkAuth();
+  }, [isAuth, dispatch]);
 
   const closeMenu = () => setIsMenuOpen(false);
 

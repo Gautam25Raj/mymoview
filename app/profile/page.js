@@ -15,70 +15,9 @@ async function getUser(id) {
   return res.json();
 }
 
-async function getFavM(id) {
-  const res = await fetch(`${process.env.URL}/api/user/${id}/movies/fav`);
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
-
-async function getWM(id) {
-  const res = await fetch(`${process.env.URL}/api/user/${id}/movies/watched`);
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
-
-async function getWlM(id) {
-  const res = await fetch(
-    `${process.env.URL}/api/user/${id}/movies/watchLater`
-  );
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
-
-async function getWlTv(id) {
-  const res = await fetch(`${process.env.URL}/api/user/${id}/tv/watchLater`);
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
-
-async function getFavTv(id) {
-  const res = await fetch(`${process.env.URL}/api/user/${id}/tv/fav`);
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
-
-async function getWTv(id) {
-  const res = await fetch(`${process.env.URL}/api/user/${id}/tv/watched`);
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
-
 export default function Home() {
-  const [user, setUser] = useState({});
+  const { user } = useSelector((state) => state.auth);
+
   const [favM, setFavM] = useState({});
   const [favTv, setFavTv] = useState({});
   const [wM, setWM] = useState({});
@@ -87,46 +26,44 @@ export default function Home() {
   const [wlTv, setWlTv] = useState({});
 
   useEffect(() => {
-    getUser(6).then((data) => {
-      setUser(data);
-    });
-  }, []);
+    const fetchData = async () => {
+      if (user.id != '') {
+        let [favM, favTv, watchedM, watchedTv, wlM, wlTv] = await Promise.all([
+          fetch(`${process.env.URL}/api/user/${user.id}/movies/fav`),
+          fetch(`${process.env.URL}/api/user/${user.id}/tv/fav`),
+          fetch(`${process.env.URL}/api/user/${user.id}/movies/watched`),
+          fetch(`${process.env.URL}/api/user/${user.id}/tv/watched`),
+          fetch(`${process.env.URL}/api/user/${user.id}/movies/watchLater`),
+          fetch(`${process.env.URL}/api/user/${user.id}/tv/watchLater`),
+        ]);
 
-  useEffect(() => {
-    getFavM(6).then((data) => {
-      setFavM(data);
-    });
-  }, []);
+        const favMData = await favM.json();
+        setFavM(favMData);
+        console.log(favMData);
 
-  useEffect(() => {
-    getFavTv(6).then((data) => {
-      setFavTv(data);
-    });
-  }, []);
+        const favTvData = await favTv.json();
+        setFavTv(favTvData);
+        console.log(favTvData);
 
-  useEffect(() => {
-    getWM(6).then((data) => {
-      setWM(data);
-    });
-  }, []);
+        const watchedMData = await watchedM.json();
+        setWM(watchedMData);
+        console.log(watchedMData);
 
-  useEffect(() => {
-    getWTv(6).then((data) => {
-      setWTv(data);
-    });
-  }, []);
+        const watchedTvData = await watchedTv.json();
+        setWTv(watchedTvData);
+        console.log(watchedTvData);
 
-  useEffect(() => {
-    getWlM(6).then((data) => {
-      setWlM(data);
-    });
-  }, []);
+        const wlMData = await wlM.json();
+        setWlM(wlMData);
+        console.log(wlMData);
 
-  useEffect(() => {
-    getWlTv(6).then((data) => {
-      setWlTv(data);
-    });
-  }, []);
+        const wlTvData = await wlTv.json();
+        setWlTv(wlTvData);
+        console.log(wlTvData);
+      }
+    };
+    fetchData();
+  }, [user]);
 
   return (
     <main className="w-full">
@@ -198,7 +135,7 @@ export default function Home() {
         {user && (
           <div className="border-b-2 border-gray-500 pb-10">
             <h2 className="text-center text-4xl font-bold mb-2">
-              {user?.username}
+              {user?.name}
             </h2>
             <h3 className="text-center text-xl opacity-60">{user?.email}</h3>
           </div>
@@ -242,7 +179,7 @@ export default function Home() {
                   <h3 className="text-2xl text-white">Watched Tv Shows</h3>
                 </div>
 
-                <ProfileCarousel items={wTv} type={'movie'} />
+                <ProfileCarousel items={wTv} type={'tv'} />
               </section>
             )}
 
@@ -252,7 +189,7 @@ export default function Home() {
                   <h3 className="text-2xl text-white">Favorites Tv Shows</h3>
                 </div>
 
-                <ProfileCarousel items={favTv} type={'movie'} />
+                <ProfileCarousel items={favTv} type={'tv'} />
               </section>
             )}
 
@@ -262,7 +199,7 @@ export default function Home() {
                   <h3 className="text-2xl text-white">Watch Later Tv Shows</h3>
                 </div>
 
-                <ProfileCarousel items={wlTv} type={'movie'} />
+                <ProfileCarousel items={wlTv} type={'tv'} />
               </section>
             )}
           </section>

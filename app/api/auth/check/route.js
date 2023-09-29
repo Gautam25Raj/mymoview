@@ -29,7 +29,7 @@ export async function GET(request) {
 
 async function getUserByEmail(email) {
   // Get the user with the specified email from the database
-  const res = await fetch(`https://noisy-aqua.cmd.outerbase.io/login2`, {
+  const res = await fetch(`https://noisy-aqua.cmd.outerbase.io/signin`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

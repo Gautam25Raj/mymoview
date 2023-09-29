@@ -4,7 +4,7 @@ export async function GET(request, { params }) {
   const { userId } = params;
 
   const res = await fetch(
-    `https://noisy-aqua.cmd.outerbase.io/getFavTv?user_id=${userId}`,
+    `https://noisy-aqua.cmd.outerbase.io/favoriteTv?user_id=${userId}`,
     {
       headers: {
         'Content-Type': 'application/json',
@@ -18,8 +18,6 @@ export async function GET(request, { params }) {
 
 export async function POST(request, { params }) {
   const { userId, tmdbId } = await request.json();
-  console.log('userId', userId);
-  console.log('tmdbId', tmdbId);
 
   try {
     await fetch(`https://noisy-aqua.cmd.outerbase.io/postFavTv`, {
@@ -29,7 +27,7 @@ export async function POST(request, { params }) {
       },
       body: JSON.stringify({
         user_id: userId,
-        tmdb_movie_id: tmdbId,
+        tmdb_tv_id: tmdbId,
       }),
     });
   } catch (e) {
@@ -37,4 +35,24 @@ export async function POST(request, { params }) {
   }
 
   return NextResponse.json('Saved to favorites');
+}
+
+export async function DELETE(request, { params }) {
+  const { searchParams } = new URL(request.url);
+
+  const userId = searchParams.get('userId');
+  const tmdbId = searchParams.get('tmdbId');
+
+  try {
+    await fetch(
+      `https://noisy-aqua.cmd.outerbase.io/delFavTv?user_id=${userId}&tmdb_tv_id=${tmdbId}`,
+      {
+        method: 'DELETE',
+      }
+    );
+  } catch (e) {
+    console.log('error: ', e);
+  }
+
+  return NextResponse.json('Remove from favorites');
 }

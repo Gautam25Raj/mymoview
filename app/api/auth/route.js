@@ -24,7 +24,7 @@ export async function POST(request, res) {
 
 async function createUser(name, email, passwordHash) {
   // Create a new user in the database
-  const res = await fetch(`https://noisy-aqua.cmd.outerbase.io/register2`, {
+  const res = await fetch(`https://noisy-aqua.cmd.outerbase.io/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

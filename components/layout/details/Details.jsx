@@ -31,7 +31,6 @@ const Details = () => {
     const getData = async () => {
       const data = await getCreditsDetails(mediaType, id);
       setCredits(data);
-      console.log(credits);
       setLoading(true);
     };
     getData();
@@ -40,11 +39,11 @@ const Details = () => {
   return (
     <>
       <DetailsHeader credits={credits?.crew} />
-      <Cast data={credits?.cast} loading={!loading} />
-      <ImagesList />
-      <VideosList />
-      <Recommended />
-      <Similar />
+      {/* <Cast data={credits?.cast} loading={!loading} /> */}
+      {/* <ImagesList /> */}
+      {/* <VideosList /> */}
+      {/* <Recommended /> */}
+      {/* <Similar /> */}
     </>
   );
 };

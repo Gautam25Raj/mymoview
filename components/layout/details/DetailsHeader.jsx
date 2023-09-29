@@ -7,6 +7,9 @@ import { useEffect, useState } from 'react';
 
 import Rating from '@/components/carousel/Rating';
 import UserBtn from '@/components/UserBtn';
+import ToggleFavoriteButton from '@/components/ToggleFavoriteBtn';
+import ToggleWatchedButton from '@/components/ToggleWatchedBtn';
+import ToggleLaterButton from '@/components/ToggleLaterBtn';
 
 async function getDetails(type, id) {
   const res = await fetch(`${process.env.URL}/api/details/${type}/${id}`);
@@ -135,7 +138,11 @@ const DetailsHeader = ({ credits }) => {
             />
           </div>
 
-          <UserBtn />
+          <div className="flex gap-5">
+            <ToggleFavoriteButton />
+            <ToggleWatchedButton />
+            <ToggleLaterButton />
+          </div>
 
           <div className="max-w-xl mb-12">
             <h3 className="text-3xl mb-2">Overview</h3>

@@ -27,15 +27,15 @@ async function getMovieGenres() {
   return res.json();
 }
 
-async function checkUser() {
-  const res = await fetch(`${process.env.URL}/api/auth/check`);
+// async function checkUser() {
+//   const res = await fetch(`${process.env.URL}/api/auth/check`);
 
-  if (!res.ok) {
-    console.log('No user found');
-  }
+//   if (!res.ok) {
+//     console.log('No user found');
+//   }
 
-  return res.json();
-}
+//   return res.json();
+// }
 
 async function getTvshowsGenres() {
   const res = await fetch(`${process.env.URL}/api/tvshow/genres`);
@@ -56,10 +56,10 @@ export default function Home() {
       const data = await getConfig();
       dispatch(getApiConfig(data));
 
-      const { user_id, username, email } = await checkUser();
-      if (username && email) {
-        dispatch(login({ id: user_id, name: username, email }));
-      }
+      // const { user_id, username, email } = await checkUser();
+      // if (username && email) {
+      //   dispatch(login({ id: user_id, name: username, email }));
+      // }
 
       const allGenres = [];
 
