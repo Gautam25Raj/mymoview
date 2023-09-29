@@ -8,7 +8,6 @@ import {
   MenuHandler,
   MenuList,
   MenuItem,
-  Avatar,
 } from '@material-tailwind/react';
 import {
   UserCircleIcon,
@@ -20,6 +19,7 @@ import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { login, logout } from '@/redux/slice/authSlice';
+import Avatar, { genConfig } from 'react-nice-avatar';
 
 const profileMenuItems = [
   {
@@ -43,9 +43,20 @@ async function checkUser() {
   return res.json();
 }
 
+async function getAvatar() {
+  const res = await fetch(`${process.env.URL}/api/avatar`);
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
+
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [avatar, setAvatar] = React.useState('');
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -59,6 +70,9 @@ function ProfileMenu() {
       }
 
       setIsLoggedIn(isAuth);
+
+      const { avatar } = await getAvatar();
+      setAvatar(avatar);
     };
     checkAuth();
   }, [isAuth, dispatch]);
@@ -85,12 +99,10 @@ function ProfileMenu() {
           className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
         >
           <Avatar
-            variant="circular"
-            size="sm"
-            alt="tania andrew"
-            className="border border-white p-0.5"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+            style={{ width: '36px', height: '36px' }}
+            {...genConfig(avatar)}
           />
+
           <ChevronDownIcon
             strokeWidth={2.5}
             className={`h-3 w-3 transition-transform ${

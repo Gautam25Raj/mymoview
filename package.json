@@ -25,6 +25,7 @@
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "18.2.0",
     "react-infinite-scroll-component": "^6.1.0",
+    "react-nice-avatar": "^1.4.1",
     "react-player": "^2.13.0",
     "react-redux": "^8.1.2",
     "react-select": "^5.7.4",

@@ -39,11 +39,11 @@ const Details = () => {
   return (
     <>
       <DetailsHeader credits={credits?.crew} />
-      {/* <Cast data={credits?.cast} loading={!loading} /> */}
-      {/* <ImagesList /> */}
-      {/* <VideosList /> */}
-      {/* <Recommended /> */}
-      {/* <Similar /> */}
+      <Cast data={credits?.cast} loading={!loading} />
+      <ImagesList />
+      <VideosList />
+      <Recommended />
+      <Similar />
     </>
   );
 };

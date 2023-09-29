@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import Avatar, { genConfig } from 'react-nice-avatar';
+
 import ProfileCarousel from '@/components/profile/ProfileCarousel';
 
 async function getUser(id) {
@@ -24,42 +26,42 @@ export default function Home() {
   const [wTv, setWTv] = useState({});
   const [wlM, setWlM] = useState({});
   const [wlTv, setWlTv] = useState({});
+  const [avatar, setAvatar] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       if (user.id != '') {
-        let [favM, favTv, watchedM, watchedTv, wlM, wlTv] = await Promise.all([
-          fetch(`${process.env.URL}/api/user/${user.id}/movies/fav`),
-          fetch(`${process.env.URL}/api/user/${user.id}/tv/fav`),
-          fetch(`${process.env.URL}/api/user/${user.id}/movies/watched`),
-          fetch(`${process.env.URL}/api/user/${user.id}/tv/watched`),
-          fetch(`${process.env.URL}/api/user/${user.id}/movies/watchLater`),
-          fetch(`${process.env.URL}/api/user/${user.id}/tv/watchLater`),
-        ]);
+        let [favM, favTv, watchedM, watchedTv, wlM, wlTv, avatar] =
+          await Promise.all([
+            fetch(`${process.env.URL}/api/user/${user.id}/movies/fav`),
+            fetch(`${process.env.URL}/api/user/${user.id}/tv/fav`),
+            fetch(`${process.env.URL}/api/user/${user.id}/movies/watched`),
+            fetch(`${process.env.URL}/api/user/${user.id}/tv/watched`),
+            fetch(`${process.env.URL}/api/user/${user.id}/movies/watchLater`),
+            fetch(`${process.env.URL}/api/user/${user.id}/tv/watchLater`),
+            fetch(`${process.env.URL}/api/avatar`),
+          ]);
 
         const favMData = await favM.json();
         setFavM(favMData);
-        console.log(favMData);
 
         const favTvData = await favTv.json();
         setFavTv(favTvData);
-        console.log(favTvData);
 
         const watchedMData = await watchedM.json();
         setWM(watchedMData);
-        console.log(watchedMData);
 
         const watchedTvData = await watchedTv.json();
         setWTv(watchedTvData);
-        console.log(watchedTvData);
 
         const wlMData = await wlM.json();
         setWlM(wlMData);
-        console.log(wlMData);
 
         const wlTvData = await wlTv.json();
         setWlTv(wlTvData);
-        console.log(wlTvData);
+
+        const avatarData = await avatar.json();
+        setAvatar(avatarData);
       }
     };
     fetchData();
@@ -95,15 +97,10 @@ export default function Home() {
           </div>
 
           <div className="-translate-y-24 bg-blue-gray-300 w-48 h-48 overflow-hidden rounded-full">
-            {!user ? (
-              <div></div>
-            ) : (
-              <Image
-                src="/no-image.jpg"
-                alt="Profile Avatar"
-                width={192}
-                height={192}
-                className="rounded-full"
+            {avatar && user && user.id && (
+              <Avatar
+                style={{ width: '12rem', height: '12rem' }}
+                {...genConfig(avatar)}
               />
             )}
           </div>
