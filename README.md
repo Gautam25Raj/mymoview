@@ -1,4 +1,4 @@
-# Personal Movie & TV Show Website using Syncloop API
+# Personal Movie & TV Show Website using Outerbase
 
 Welcome to the Personal Movie & TV Show Website! Discover, explore, and immerse yourself in the world of movies and TV shows with this interactive web application powered by the TMDB (The Movie Database) API.
 
@@ -97,9 +97,10 @@ npm run start
 ## Environment Variables Setup Guide
 To run this project, you need `.env` files in your root folders. Add the following environment variables to your .env file: 
 
-`API_TOKEN` : Your TMDB Api token.
-`BEARER_TOKEN`: Your Syncloop token.
-
+`URL`= Your website URL
+`API_KEY`= Your tmdb API key
+`BEARER_TOKEN`= Your TMDB Auth Token
+`JWT_SECRET`= Your JWT secret key
 <br>
 
 **Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
@@ -108,5 +109,5 @@ To run this project, you need `.env` files in your root folders. Add the followi
 This project is licensed under the MIT License - see the LICENSE.md file for details.
 
 ## Acknowledgments
-Special thanks to **TMDB** and **Syncloop** for providing the API that powers this project.
-Shoutout to the open-source community for their valuable contributions.
+Special thanks to **TMDB** and **Outerbase** for providing the API that powers this project.
+**Shoutout to the open-source community for their valuable contributions.**
