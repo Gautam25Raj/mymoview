@@ -24,8 +24,8 @@ const ImagesList = () => {
   useEffect(() => {
     const getData = async () => {
       const data = await getImages(mediaType, id);
+
       setImages(data);
-      console.log(data);
       setImageId(data?.posters ? data.posters[0]?.file_path : '');
       setLoading(false);
     };

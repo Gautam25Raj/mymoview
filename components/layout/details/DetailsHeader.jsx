@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Rating from '@/components/carousel/Rating';
-import UserBtn from '@/components/UserBtn';
 import ToggleFavoriteButton from '@/components/ToggleFavoriteBtn';
 import ToggleWatchedButton from '@/components/ToggleWatchedBtn';
 import ToggleLaterButton from '@/components/ToggleLaterBtn';

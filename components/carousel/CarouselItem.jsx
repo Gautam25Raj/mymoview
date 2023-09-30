@@ -20,7 +20,7 @@ const CarouselItem = ({ item, type, noGenre }) => {
           `/explore/${
             item.media_type
               ? item.media_type
-              : type === 'tvshow'
+              : type === 'tvshow' || type === 'tv'
               ? 'tv'
               : 'movie'
           }/${item.id}`

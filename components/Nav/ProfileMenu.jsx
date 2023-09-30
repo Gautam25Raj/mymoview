@@ -64,14 +64,11 @@ function ProfileMenu() {
 
   useEffect(() => {
     const checkAuth = async () => {
-      console.log('checking auth');
       const { user_id, username, email } = await checkUser();
 
-      console.log(user_id, username, email);
       if (!email) {
         return;
       }
-      console.log('dispatching login');
 
       dispatch(login({ id: user_id, name: username, email }));
 

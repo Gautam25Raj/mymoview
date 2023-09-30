@@ -27,6 +27,7 @@ const ProfileCarousel = ({ items, type }) => {
               return data;
             })
           );
+
           setDetails(details);
           setLoading(false);
         } catch (error) {
