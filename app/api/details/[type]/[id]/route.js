@@ -6,7 +6,7 @@ export async function GET(request, { params }) {
   const { type, id } = params;
 
   const res = await fetch(
-    `https://api.themoviedb.org/3/${type}/${id}?apiKey=${apiKey}`,
+    `https://noisy-aqua.cmd.outerbase.io/getDetails?type=${type}&id=${id}&apiKey=${apiKey}`,
     {
       headers: {
         Authorization: `Bearer ${bearerToken}`,

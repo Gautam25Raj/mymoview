@@ -5,7 +5,7 @@ export async function GET(request, { params }) {
   const apiKey = process.env.API_KEY;
 
   const res = await fetch(
-    `https://api.themoviedb.org/3/configuration?apiKey=${apiKey}`,
+    `https://noisy-aqua.cmd.outerbase.io/config?apiKey=${apiKey}`,
     {
       headers: {
         Authorization: `Bearer ${bearerToken}`,
