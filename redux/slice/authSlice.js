@@ -20,9 +20,11 @@ export const authSlice = createSlice({
       state.user.name = action.payload.name;
       state.user.email = action.payload.email;
     },
-    logout: () => {
+    logout: (state) => {
       state.isAuth = false;
-      return initialState;
+      state.user.id = '';
+      state.user.name = '';
+      state.user.email = '';
     },
   },
 });

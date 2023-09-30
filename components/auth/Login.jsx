@@ -8,8 +8,8 @@ import { login } from '@/redux/slice/authSlice';
 import { useRouter } from 'next/navigation';
 
 function Register() {
-  const [email, setEmail] = useState('gautam18@gg.com');
-  const [password, setPassword] = useState('hello@1234');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const router = useRouter();

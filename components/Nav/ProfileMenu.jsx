@@ -80,7 +80,6 @@ function ProfileMenu() {
     };
 
     checkAuth();
-
     setIsLoggedIn(isAuth);
   }, [isAuth, dispatch]);
 
@@ -91,6 +90,7 @@ function ProfileMenu() {
     if (label === 'Sign Out') {
       fetch(`${process.env.URL}/api/auth/logout`);
       console.log('sign out');
+      setIsLoggedIn(isAuth);
       dispatch(logout());
     } else {
       router.push('/profile');
