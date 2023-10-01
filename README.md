@@ -1,6 +1,6 @@
 # Personal Movie & TV Show Website using Outerbase
 
-Welcome to the Personal Movie & TV Show Website! Discover, explore, and immerse yourself in the world of movies and TV shows with this interactive web application powered by the TMDB (The Movie Database) API.
+Welcome to the Personal Movie & TV Show Website! Discover, explore, and immerse yourself in the world of movies and TV shows with this interactive web application powered by Outerbase and TMDB (The Movie Database) API.
 
 ## Demo
 <details>
