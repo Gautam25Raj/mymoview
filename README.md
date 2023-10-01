@@ -98,9 +98,13 @@ npm run start
 To run this project, you need `.env` files in your root folders. Add the following environment variables to your .env file: 
 
 `URL`= Your website URL
+
 `API_KEY`= Your tmdb API key
+
 `BEARER_TOKEN`= Your TMDB Auth Token
+
 `JWT_SECRET`= Your JWT secret key
+
 <br>
 
 **Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
